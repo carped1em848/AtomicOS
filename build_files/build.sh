@@ -12,6 +12,17 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 install -y tmux 
 
+#Install Flatpak packages
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install -y --noninteractive flathub app.zen_browser.zen
+flatpak install -y --noninteractive flathub com.nextcloud.desktopclient.nextcloud
+flatpak install -y --noninteractive flathub org.libreoffice.LibreOffice
+flatpak install -y --noninteractive flathub org.telegram.desktop
+flatpak install -y --noninteractive flathub io.mpv.Mpv
+
+# Очистка кэша (опционально)
+flatpak uninstall --unused -y
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
